@@ -6,7 +6,7 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		vVJssG25SmqlhE8zDjCMq3KQBJE=
+		ayf8wdUaK/m02UASRUUwc+5S/xo=
 		</data>
 		<key>Headers/JivoSDK-Swift.h</key>
 		<data>
@@ -18,7 +18,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		UKKe0a9f9nPYqM+ABkI2KlrWKu0=
+		FHU4eGTotZoIrvoqjVXofuLCdMU=
 		</data>
 		<key>Modules/JivoSDK.swiftmodule/arm.swiftdoc</key>
 		<data>
@@ -189,11 +189,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			vVJssG25SmqlhE8zDjCMq3KQBJE=
+			ayf8wdUaK/m02UASRUUwc+5S/xo=
 			</data>
 			<key>hash2</key>
 			<data>
-			P+jshlYo2CbxF0plsA5eZfbKfgGZ0ION5lGE+X5C048=
+			69rSerYG3OxKdmyaAUdBLTK0tep+Hb6sJqdc3hP6Ges=
 			</data>
 		</dict>
 		<key>Headers/JivoSDK-Swift.h</key>
