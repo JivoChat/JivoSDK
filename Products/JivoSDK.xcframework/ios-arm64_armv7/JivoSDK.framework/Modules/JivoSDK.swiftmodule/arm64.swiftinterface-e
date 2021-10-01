@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.5 (swiftlang-1300.0.31.1 clang-1300.0.29.1)
+// swift-compiler-version: Apple Swift version 5.3 (swiftlang-1200.0.29.2 clang-1200.0.30.1)
 // swift-module-flags: -target arm64-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name JivoSDK
 import AVFoundation
 import AudioToolbox
@@ -37,7 +37,6 @@ import UIKit
 import UserNotifications
 import WebKit
 import XCGLogger
-import _Concurrency
 import libPhoneNumber_iOS
 public enum JivoSDKSessionEnvironmentItem {
   case chatState
@@ -45,17 +44,17 @@ public enum JivoSDKSessionEnvironmentItem {
   case agentInfo
   case agentName
   public static func == (a: JivoSDKSessionEnvironmentItem, b: JivoSDKSessionEnvironmentItem) -> Swift.Bool
-  public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
   }
+  public func hash(into hasher: inout Swift.Hasher)
 }
 @objc public enum JivoSDKSessionNotificationKind : Swift.Int {
   case remoteIncome
   case localBanner
   case unknown
-  public init?(rawValue: Swift.Int)
   public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
   public var rawValue: Swift.Int {
     get
   }
@@ -163,7 +162,7 @@ public enum AFError : Swift.Error {
   case sessionTaskFailed(error: Swift.Error)
   case urlRequestValidationFailed(reason: AFError.URLRequestValidationFailureReason)
 }
-extension Swift.Error {
+extension Error {
   public var asAFError: AFError? {
     get
   }
@@ -295,9 +294,9 @@ extension HTTPHeaders : Swift.Collection {
   public func index(after i: Swift.Int) -> Swift.Int
   public typealias Element = HTTPHeader
   public typealias Index = Swift.Int
-  public typealias Indices = Swift.DefaultIndices<HTTPHeaders>
   public typealias Iterator = Swift.IndexingIterator<[HTTPHeader]>
   public typealias SubSequence = Swift.Slice<HTTPHeaders>
+  public typealias Indices = Swift.DefaultIndices<HTTPHeaders>
 }
 extension HTTPHeaders : Swift.CustomStringConvertible {
   public var description: Swift.String {
@@ -308,11 +307,11 @@ public struct HTTPHeader : Swift.Hashable {
   public let name: Swift.String
   public let value: Swift.String
   public init(name: Swift.String, value: Swift.String)
-  public func hash(into hasher: inout Swift.Hasher)
-  public static func == (a: HTTPHeader, b: HTTPHeader) -> Swift.Bool
   public var hashValue: Swift.Int {
     get
   }
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: HTTPHeader, b: HTTPHeader) -> Swift.Bool
 }
 extension HTTPHeader : Swift.CustomStringConvertible {
   public var description: Swift.String {
@@ -339,18 +338,18 @@ extension HTTPHeader {
   public static let defaultAcceptLanguage: HTTPHeader
   public static let defaultUserAgent: HTTPHeader
 }
-extension Foundation.URLRequest {
+extension URLRequest {
   public var headers: HTTPHeaders {
     get
     set
   }
 }
-extension Foundation.HTTPURLResponse {
+extension HTTPURLResponse {
   public var headers: HTTPHeaders {
     get
   }
 }
-extension Foundation.URLSessionConfiguration {
+extension URLSessionConfiguration {
   public var headers: HTTPHeaders {
     get
     set
@@ -384,13 +383,13 @@ open class MultipartFormData {
   @objc(presentOver:) func present(over viewController: UIKit.UIViewController)
   @objc(presentOver:withConfig:) func present(over viewController: UIKit.UIViewController, config: JivoSDKChattingConfig)
 }
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) open class JivoSDKContainer : UIKit.UINavigationController {
-  @available(iOS 5.0, *)
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(navigationBarClass: Swift.AnyClass?, toolbarClass: Swift.AnyClass?)
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(rootViewController: UIKit.UIViewController)
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
-  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+@objc @_inheritsConvenienceInitializers open class JivoSDKContainer : UIKit.UINavigationController {
   @objc deinit
+  @available(iOS 5.0, *)
+  @objc override dynamic public init(navigationBarClass: Swift.AnyClass?, toolbarClass: Swift.AnyClass?)
+  @objc override dynamic public init(rootViewController: UIKit.UIViewController)
+  @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
 }
 @objc public protocol JivoSDKDebuggingDelegate {
   @objc func didLog(message: Swift.String)
@@ -407,13 +406,14 @@ public enum JivoSDKTitleBarIconStyle {
   public init(locale: Foundation.Locale? = nil, icon: JivoSDKTitleBarIconStyle? = nil, titlePlaceholder: Swift.String? = nil, titleColor: UIKit.UIColor? = nil, subtitleCaption: Swift.String? = nil, subtitleColor: UIKit.UIColor? = nil, inputPlaceholder: Swift.String? = nil, activeMessage: Swift.String? = nil)
   @available(swift, obsoleted: 0.1, message: "This is Objective-C only initializer. Use init(locale:icon:titlePlaceholder:titleColor:subtitleCaption:subtitleColor:inputPlaceholder:activeMessage) for Swift instead.")
   @objc public init(locale: Foundation.Locale? = nil, useDefaultIcon: Swift.Bool = true, customIcon: UIKit.UIImage? = nil, titlePlaceholder: Swift.String? = nil, titleColor: UIKit.UIColor? = nil, subtitleCaption: Swift.String? = nil, subtitleColor: UIKit.UIColor? = nil, inputPlaceholder: Swift.String? = nil, activeMessage: Swift.String? = nil)
+  @objc override dynamic public init()
   @objc deinit
 }
 @objc public enum JivoSDKDebuggingLevel : Swift.Int {
   case silent
   case full
-  public init?(rawValue: Swift.Int)
   public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
   public var rawValue: Swift.Int {
     get
   }
@@ -422,8 +422,8 @@ public enum JivoSDKTitleBarIconStyle {
   case success
   case failedAccessing
   case failedPreparing
-  public init?(rawValue: Swift.Int)
   public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
   public var rawValue: Swift.Int {
     get
   }
@@ -444,12 +444,13 @@ public enum JivoSDKTitleBarIconStyle {
   @objc public static var debugging: IJivoSDKDebugging {
     get
   }
-  @objc override dynamic public init()
   @objc deinit
+  @objc override dynamic public init()
 }
 @objc public class JivoSDKSessionCustomData : ObjectiveC.NSObject {
   @objc public init(name: Swift.String? = nil, email: Swift.String? = nil, phone: Swift.String? = nil, brief: Swift.String? = nil)
   @objc deinit
+  @objc override dynamic public init()
 }
 extension JivoSDKSessionCustomData {
   @objc override dynamic public var debugDescription: Swift.String {
